@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <style type="text/css">
-        .myCircle {
-            fill:red; 
-            stroke:black;
-            stroke-width:1px;
+        .myRect {
+            fill: blanchedalmond;
+            stroke: blue;
+            stroke-width: 2px;
+            opacity: 0.5;
         }
     </style>
     <meta charset="UTF-8">
@@ -15,7 +16,8 @@
 </head>
 <body>
     <svg width="500px" height="500px">
-        <circle r="50px" cx="100px" cy="100" class="myCircle"/>
+        <rect x="200px" y="100px" width="100px" height="30px" class="myRect"></rect>
+        <text x="100px" y="100px" text-anchor="end">Some text in between</text>
     </svg>
 </body>
 </html>
