@@ -23,9 +23,36 @@
             stroke: black;
             stroke-width: 1px;
         }
+        .top-label {
+			font-size: 13px;
+			font-style: italic;
+			text-transform: uppercase;
+			float: left;
+		}
+        .age-label {
+			text-align: right;
+			font-weight: bold;
+			width: 90px;
+			padding-right: 10px;
+		}
+		.clearfix {
+			clear: both;
+		}
+        .axis-label {
+			text-anchor: middle;
+			font-size: 13px;
+		}
     </style>
  </head>
  <body>
+    <h2>Age distribution of the world, 2010</h2>
+	<div class="top-label age-label">
+		<p>age group</p>
+	</div>
+	<div class="top-label">
+		<p>portion of the population</p>
+	</div>
+	<div class="clearfix"></div>
     <svg width="500px" height="500px">
         <g transform="translate(100,30) scale(43.1,1)" class="bar">
             <rect x="0px" y="0px" height="20px" width="1.56660059px"/>
