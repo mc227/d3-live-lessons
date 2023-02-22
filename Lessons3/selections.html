@@ -9,7 +9,7 @@
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
-      <div id="header">
+      <!-- <div id="header">
             <p>Is this a circle?</p>
       </div>
       <svg width="500px" height="40px">
@@ -17,10 +17,30 @@
       </svg>
       <div class="footer">
             <p>Yeah, looks like it</p>
-      </div>
+      </div> -->
 
 <script>
       // Your JavaScript goes here
+      var body = d3.select('body');
+
+      body.append('div')
+            .attr("id","header")
+      .append('p')
+            .text("Is this a circle?")
+
+      body.append('svg')
+            .attr('width',500)
+            .attr('height',40)
+      .append('circle')
+            .attr('r',20)
+            .attr('cx',50)
+            .attr('cy',20);
+
+      body.append('div')
+            .attr('class', 'footer')
+      .append('p')
+            .text("Yeah, looks like it")
+
 </script>
 </body>
 </html>

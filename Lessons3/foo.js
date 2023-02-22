@@ -1,24 +1,19 @@
-// var myCircle = d3.select('circle')
+var body = d3.select('body');
 
-// myCircle.attr('fill','red')
-//     .attr('r',10)
-//     .attr('stroke','black')
-//     .attr('stroke-width',2)
+body.append('div')
+        .attr("id","header")
+    .append('p')
+        .text("Is this a circle?")
 
-// var myDiv = d3.select('div')
+body.append('svg')
+        .attr('width',500)
+        .attr('height',40)
+    .append('circle')
+        .attr('r',20)
+        .attr('cx',50)
+        .attr('cy',20);
 
-// myDiv.style('background-color','blue')
-//     .select('p')
-//         .style('font-family','Helvetica')
-
-// var myGraf = d3.select('div')
-//         .style('background-color','blue')
-//     .select('p')
-//         .style('font-family','Helvetica')
-
-var myDiv = d3.select('div');
-
-myDiv.append('p')
-    .style('font-style','italic')
-    .style('color','grey')
-    .text('Oh Hi Mark!!!')
+body.append('div')
+        .attr('class', 'footer')
+    .append('p')
+        .text("Yeah, looks like it")
