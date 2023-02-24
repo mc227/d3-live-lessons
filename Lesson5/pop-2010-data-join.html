@@ -58,13 +58,17 @@
 
     var tickData = [0, 2.5, 5.0, 7.5]
 
+    var scale = d3.scaleLinear()
+        .domain([0, d3.max(popData)])
+        .range([0, 400]);
+
     var svg = d3.select('body')
         .append('svg')
-            .attr('height',500)
-            .attr('width',500)
+            .attr('height', 500)
+            .attr('width', 500)
     
     var barGroup = svg.append('g')
-        .attr('transform', 'translate(100,30) scale(43.1,1)')
+        .attr('transform', 'translate(100,30)')
         .attr('class', 'bar')
 
     barGroup.selectAll('rect')
@@ -73,7 +77,7 @@
         .attr('x',0)
         .attr('y',function(d,i) {return i*25;})
         .attr('height',20)
-        .attr('width',function(d){return d;});
+        .attr('width',function(d){return scale(d);});
 
     var labelGroup = svg.append('g')
         .attr('transform','translate(90,30)')
@@ -93,8 +97,8 @@
     tickGroup.selectAll('line')
             .data(tickData)
         .enter().append('line')
-            .attr('x1',function(d) {return d * 43;})
-            .attr('x2',function(d) {return d * 43;})
+            .attr('x1',function(d) {return scale(d);})
+            .attr('x2',function(d) {return scale(d);})
             .attr('y1',0)
             .attr('y2',-10)
 
