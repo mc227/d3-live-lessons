@@ -58,17 +58,22 @@
 
     var tickData = [0, 2.5, 5.0, 7.5]
 
+    var margin = {top: 30, right:0, bottom:0, left:100};
+
+    var width = 500 - margin.right - margin.left;
+    var height = 500 - margin.top - margin.bottom;
+
     var scale = d3.scaleLinear()
         .domain([0, d3.max(popData)])
-        .range([0, 400]);
+        .range([0, width]);
 
-    var svg = d3.select('body')
-        .append('svg')
-            .attr('height', 500)
-            .attr('width', 500)
+    var svg = d3.select('body').append('svg')
+            .attr('height', height + margin.top + margin.bottom)
+            .attr('width', width + margin.right + margin.left)
+        .append('g')
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')' );
     
     var barGroup = svg.append('g')
-        .attr('transform', 'translate(100,30)')
         .attr('class', 'bar')
 
     barGroup.selectAll('rect')
@@ -80,18 +85,16 @@
         .attr('width',function(d){return scale(d);});
 
     var labelGroup = svg.append('g')
-        .attr('transform','translate(90,30)')
         .attr('class','bar-label')
 
     labelGroup.selectAll('text')
         .data(labelData)
         .enter().append('text')
-        .attr("x",0)
+        .attr("x", -10)
         .attr('y',function(d,i) {return i*25 + 15; })
         .text(function(d) {return d;})
 
     var tickGroup = svg.append('g')
-        .attr('transform','translate(100,30)')
         .attr('class','axis');
 
     tickGroup.selectAll('line')
@@ -103,7 +106,6 @@
             .attr('y2',-10)
 
     var tickLabelGroup = svg.append('g')
-        .attr('transform','translate(100,30)')
         .attr('class','axis-label');
     
     tickLabelGroup.selectAll('text')
