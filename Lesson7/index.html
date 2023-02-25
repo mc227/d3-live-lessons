@@ -10,16 +10,6 @@
           width: 500px;
           height: 500px;
      }
-     .play-button {
-          margin-left: 10px;
-          margin-bottom: 15px;
-          font-style: italic;
-          cursor: pointer;
-          color: grey;
-     }
-     .play-button:hover {
-          color: black;
-     }
      .buttons-container {
           width: 520px;
           margin-bottom: 25px;
@@ -83,8 +73,8 @@
      var buttonYears = [1950, 1955, 1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025, 2030, 2035, 2040, 2045, 2050];
 
      var margin = {top: 30, right: 0, bottom: 0, left: 100},
-          width = 500 - margin.left - margin.left,
-          height = 450 - margin.top - margin.bottom;
+          width = 500 - margin.right - margin.left,
+          height = 500 - margin.top - margin.bottom;
 
      var body = d3.select("body");
 
@@ -92,7 +82,7 @@
           .range([0, width]);
 
      var y = d3.scale.ordinal()
-          .rangeBands([0, height], 0.2, 0);
+          .rangeBands([0, height], 0.2);
 
      var xAxis = d3.svg.axis()
           .scale(x)
@@ -108,11 +98,7 @@
      }
 
      body.append("h2")
-               .text("Age distribution of the world");
-
-     var playAll = body.append("div")
-          .attr("class", "play-button")
-          .text("▶ PLAY ALL YEARS");
+          .text("Age distribution of the world");
 
      var buttons = body.append("div")
           .attr("class", "buttons-container")
@@ -176,45 +162,21 @@
                .attr("class","y axis")
 
           buttons.on("click", function(d) {
-               update(d);
-               clearInterval(playInterval);
-          });
-
-          var playInterval;
-
-          playAll.on("click", function() {
-
-               var i = 0;
-
-               playInterval = setInterval(function() {
-                    update(buttonYears[i]);
-
-                    i++;
-
-                    if(i > buttonYears.length - 1) {
-                         clearInterval(playInterval);
-                    }
-
-               }, 700);
-          });
-
-          function update(updateYear) {
-
                d3.select(".selected")
                     .classed("selected", false);
 
-               buttons
-                    .filter(function(d) { return d == updateYear; })
-                    .classed("selected", true)
+               d3.select(this)
+                    .classed("selected", true);
 
-               popData = data.filter(function(element) {return element.year == updateYear});
+               year = d;
+
+               popData = data.filter(function(element) {return element.year == year});
 
                bars.data(popData, keys)
                     .transition()
                     .duration(500)
                     .attr("width", function(d) { return x(d.value); });
-
-          };
+          });
      });
 </script>
 </body>
